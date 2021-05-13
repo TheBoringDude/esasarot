@@ -2,7 +2,6 @@
 
 const { spawn } = require("child_process");
 const fs = require("fs");
-const path = require("path");
 const { exit } = require("process");
 
 const packageManagers = {
@@ -14,7 +13,7 @@ const packageManagers = {
 function readPackageJson() {
 	let packageJson;
 	try {
-		packageJson = fs.readFileSync(path.resolve(__dirname, "package.json"));
+		packageJson = fs.readFileSync("./package.json");
 	} catch {
 		console.error("There was a problem trying to read `package.json`");
 		exit(1);
@@ -66,11 +65,10 @@ function UpDeps(mode) {
 	if (mode === "main") mainDeps = deps;
 
 	var mgr = "";
-
 	// respect lock files
-	if (fs.existsSync(path.resolve(__dirname, "package-lock.json"))) {
+	if (fs.existsSync("./package-lock.json")) {
 		mgr = "npm";
-	} else if (fs.existsSync(path.resolve(__dirname, "yarn.lock"))) {
+	} else if (fs.existsSync("./yarn.lock")) {
 		mgr = "yarn";
 	} else {
 		console.error("no lock files found... stopping");

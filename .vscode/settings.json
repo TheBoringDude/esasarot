@@ -1,4 +1,7 @@
 {
     "python.pythonPath": "venv/bin/python",
-    "python.formatting.blackPath": "venv/bin/black"
+    "python.formatting.blackPath": "venv/bin/black",
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }
